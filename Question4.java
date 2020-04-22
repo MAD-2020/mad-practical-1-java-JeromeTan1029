@@ -17,7 +17,27 @@ public class Question4
      * Hint: 2 loops are required. System.out.print(...) to print on single line.
      */
      
-    Scanner in = new Scanner(System.in);
+    boolean validation;
+
+    validation = false;
+    do {
+      System.out.print("Enter an integer: ");
+      Scanner input = new Scanner(System.in);
+      if (input.hasNextInt()){
+        int integer = input.nextInt();
+        for (int i = integer ; i > 0 ; i--){
+          for (int u = i ; u > 0 ; u--){
+            System.out.print("*");
+          }
+          System.out.println();
+        }
+        validation = true;
+      }
+      else{
+        System.out.println("Invalid Input");
+      }
+    }
+    while (validation == false);
     
   }
 }
