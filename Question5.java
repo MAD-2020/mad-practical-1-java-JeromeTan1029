@@ -26,7 +26,59 @@ public class Question5
      * Hint: Use a loop to get input. Use another 2 loops to find the mode
      */
      
-    Scanner in = new Scanner(System.in);
+    boolean validation;
+    int numbers = 0;
+    HashMap<Integer, Integer> occurrence = new HashMap<Integer, Integer>();
+
+    validation = false;
+    do {
+      System.out.print("Enter in numbers to enter: ");
+      Scanner numbersInput = new Scanner(System.in);
+      if (numbersInput.hasNextInt()){
+        numbers = numbersInput.nextInt();
+        validation = true;
+      }
+      else{
+        System.out.println("Invalid Input");
+      }
+    }
+    while (validation == false);
+
+    for (int i = 0 ; i < numbers ; i++){
+      validation = false;
+      do {
+        System.out.print("Enter number " + (i + 1) + ": ");
+        Scanner input = new Scanner(System.in);
+        if (input.hasNextInt()){
+          int integer = input.nextInt();
+          if (!(occurrence.containsKey(integer))){
+            occurrence.put(integer, 1);
+          }
+          else{
+            occurrence.replace(integer, occurrence.get(integer) + 1);
+          }
+          validation = true;
+        }
+        else{
+          System.out.println("Invalid Input");
+        }
+      }
+      while (validation == false);
+    }
+
+    int highestOccurrence = 0;
+    for (int i : occurrence.values()){
+      if (i > highestOccurrence){
+        highestOccurrence = i;
+      }
+    }
+    
+    System.out.print("Mode(s): ");
+    for (int key : occurrence.keySet()){
+      if (occurrence.get(key) == highestOccurrence){
+        System.out.print(key + " ");
+      }
+    }
     
   }
 }
